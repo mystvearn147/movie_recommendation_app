@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'landing/landing_screen.dart';
 
 class MovieFlow extends StatefulWidget {
-  const MovieFlow({Key? key}) : super(key: key);
+  const MovieFlow({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   createState() => _MovieFlowState();
@@ -31,32 +36,29 @@ class _MovieFlowState extends State<MovieFlow> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return PageView(
-      controller: pageController,
-      physics: const NeverScrollableScrollPhysics(),
-      children: [
-        Scaffold(
-          body: Container(
-            color: Colors.red,
+  Widget build(BuildContext context) => PageView(
+        controller: pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          LandingScreen(
+            nextPage: nextPage,
+            previousPage: previousPage,
           ),
-        ),
-        Scaffold(
-          body: Container(
-            color: Colors.green,
+          Scaffold(
+            body: Container(
+              color: Colors.green,
+            ),
           ),
-        ),
-        Scaffold(
-          body: Container(
-            color: Colors.blue,
+          Scaffold(
+            body: Container(
+              color: Colors.blue,
+            ),
           ),
-        ),
-        Scaffold(
-          body: Container(
-            color: Colors.yellow,
+          Scaffold(
+            body: Container(
+              color: Colors.yellow,
+            ),
           ),
-        ),
-      ],
-    );
-  }
+        ],
+      );
 }
