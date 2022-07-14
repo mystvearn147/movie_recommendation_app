@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:movie_recommendation_app/src/features/movie_flow/movie_flow.dart';
 
 import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
+
 import 'theme/custom_theme.dart';
+import 'features/movie_flow/movie_flow.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
@@ -75,7 +78,7 @@ class MyApp extends StatelessWidget {
                     return const SampleItemDetailsView();
                   case SampleItemListView.routeName:
                   default:
-                    return const SampleItemListView();
+                    return const MovieFlow();
                 }
               },
             );
