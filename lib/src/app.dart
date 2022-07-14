@@ -6,6 +6,7 @@ import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
+import 'theme/custom_theme.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
@@ -57,7 +58,8 @@ class MyApp extends StatelessWidget {
           // preferred ThemeMode (light, dark, or system default) from the
           // SettingsController to display the correct theme.
           theme: ThemeData(),
-          darkTheme: ThemeData.dark(),
+          // darkTheme: ThemeData.dark(),
+          darkTheme: CustomTheme.darkTheme(context),
           themeMode: settingsController.themeMode,
 
           // Define a function to handle named routes in order to support
