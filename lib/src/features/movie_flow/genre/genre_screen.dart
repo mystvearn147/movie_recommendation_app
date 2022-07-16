@@ -10,9 +10,7 @@ class GenreScreen extends StatefulWidget {
     Key? key,
     required this.nextPage,
     required this.previousPage,
-  }) : super(
-          key: key,
-        );
+  }) : super(key: key);
 
   final VoidCallback nextPage;
   final VoidCallback previousPage;
@@ -49,9 +47,7 @@ class _GenreScreenState extends State<GenreScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: widget.previousPage,
-        ),
+        leading: BackButton(onPressed: widget.previousPage),
       ),
       body: Center(
         child: Column(
@@ -63,9 +59,7 @@ class _GenreScreenState extends State<GenreScreen> {
             ),
             Expanded(
               child: ListView.separated(
-                padding: const EdgeInsets.symmetric(
-                  vertical: kListItemSpacing,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: kListItemSpacing),
                 itemCount: genres.length,
                 itemBuilder: (context, index) {
                   final genre = genres[index];
@@ -75,18 +69,15 @@ class _GenreScreenState extends State<GenreScreen> {
                     onTap: () => toggleSelected(genre),
                   );
                 },
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: kListItemSpacing,
-                ),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: kListItemSpacing),
               ),
             ),
             PrimaryButton(
               onPressed: widget.nextPage,
               text: 'Continue',
             ),
-            const SizedBox(
-              height: kMediumSpacing,
-            ),
+            const SizedBox(height: kMediumSpacing),
           ],
         ),
       ),

@@ -7,9 +7,7 @@ class PrimaryButton extends StatelessWidget {
     required this.onPressed,
     required this.text,
     this.width = double.infinity,
-  }) : super(
-          key: key,
-        );
+  }) : super(key: key);
 
   final VoidCallback onPressed;
   final String text;
@@ -17,9 +15,7 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12.0,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: TextButton(
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(

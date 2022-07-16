@@ -38,13 +38,9 @@ class CustomTheme {
               fontWeight: FontWeight.bold,
             ),
           )
-          .apply(
-            displayColor: Colors.white,
-          ),
+          .apply(displayColor: Colors.white),
       textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          backgroundColor: Palette.red500,
-        ),
+        style: TextButton.styleFrom(backgroundColor: Palette.red500),
       ),
       sliderTheme: SliderThemeData(
         activeTrackColor: Colors.white,

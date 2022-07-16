@@ -6,11 +6,7 @@ import 'package:movie_recommendation_app/src/features/movie_flow/rating/rating_s
 import 'package:movie_recommendation_app/src/features/movie_flow/years_back/years_back_screen.dart';
 
 class MovieFlow extends StatefulWidget {
-  const MovieFlow({
-    Key? key,
-  }) : super(
-          key: key,
-        );
+  const MovieFlow({Key? key}) : super(key: key);
 
   @override
   createState() => _MovieFlowState();

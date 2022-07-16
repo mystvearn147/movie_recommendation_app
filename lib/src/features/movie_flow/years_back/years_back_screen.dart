@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:movie_recommendation_app/src/core/constants.dart';
 import 'package:movie_recommendation_app/src/core/widgets/primary_button.dart';
+import 'package:movie_recommendation_app/src/features/movie_flow/result/result_screen.dart';
 
 class YearsBackScreen extends StatefulWidget {
   const YearsBackScreen({
     Key? key,
     required this.nextPage,
     required this.previousPage,
-  }) : super(
-          key: key,
-        );
+  }) : super(key: key);
 
   final VoidCallback nextPage;
   final VoidCallback previousPage;
@@ -20,7 +19,7 @@ class YearsBackScreen extends StatefulWidget {
 }
 
 class _YearsBackScreenState extends State<YearsBackScreen> {
-  double yearsBack = 10;
+  double yearsBack = 10.0;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +27,7 @@ class _YearsBackScreenState extends State<YearsBackScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: widget.previousPage,
-        ),
+        leading: BackButton(onPressed: widget.previousPage),
       ),
       body: Center(
         child: Column(
@@ -64,19 +61,17 @@ class _YearsBackScreenState extends State<YearsBackScreen> {
                 });
               },
               value: yearsBack,
-              min: 0,
-              max: 70,
+              min: 0.0,
+              max: 70.0,
               divisions: 70,
               label: yearsBack.ceil().toString(),
             ),
             const Spacer(),
             PrimaryButton(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(ResultScreen.route()),
               text: 'Amazing',
             ),
-            const SizedBox(
-              height: kMediumSpacing,
-            ),
+            const SizedBox(height: kMediumSpacing),
           ],
         ),
       ),

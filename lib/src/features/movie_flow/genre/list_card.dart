@@ -8,9 +8,7 @@ class ListCard extends StatelessWidget {
     Key? key,
     required this.genre,
     required this.onTap,
-  }) : super(
-          key: key,
-        );
+  }) : super(key: key);
 
   final Genre genre;
   final VoidCallback onTap;
@@ -26,10 +24,10 @@ class ListCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(kBorderRadius),
             onTap: onTap,
             child: Container(
-              width: 140,
+              width: 140.0,
               padding: const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 16,
+                vertical: 8.0,
+                horizontal: 16.0,
               ),
               child: Text(
                 genre.name,

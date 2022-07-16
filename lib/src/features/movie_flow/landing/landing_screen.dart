@@ -8,9 +8,7 @@ class LandingScreen extends StatelessWidget {
     Key? key,
     required this.nextPage,
     required this.previousPage,
-  }) : super(
-          key: key,
-        );
+  }) : super(key: key);
 
   final VoidCallback nextPage;
   final VoidCallback previousPage;
@@ -27,17 +25,13 @@ class LandingScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
-              Image.asset(
-                'images/undraw_horror_movie.png',
-              ),
+              Image.asset('images/undraw_horror_movie.png'),
               const Spacer(),
               PrimaryButton(
                 onPressed: nextPage,
                 text: 'Get Started',
               ),
-              const SizedBox(
-                height: kMediumSpacing,
-              )
+              const SizedBox(height: kMediumSpacing)
             ],
           ),
         ),

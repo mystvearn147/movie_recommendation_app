@@ -8,9 +8,7 @@ class RatingScreen extends StatefulWidget {
     Key? key,
     required this.nextPage,
     required this.previousPage,
-  }) : super(
-          key: key,
-        );
+  }) : super(key: key);
 
   final VoidCallback nextPage;
   final VoidCallback previousPage;
@@ -28,9 +26,7 @@ class _RatingScreenState extends State<RatingScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: widget.previousPage,
-        ),
+        leading: BackButton(onPressed: widget.previousPage),
       ),
       body: Center(
         child: Column(
@@ -51,7 +47,7 @@ class _RatingScreenState extends State<RatingScreen> {
                 const Icon(
                   Icons.star_rounded,
                   color: Colors.amber,
-                  size: 62,
+                  size: 62.0,
                 ),
               ],
             ),
@@ -63,8 +59,8 @@ class _RatingScreenState extends State<RatingScreen> {
                 });
               },
               value: rating,
-              min: 1,
-              max: 10,
+              min: 1.0,
+              max: 10.0,
               divisions: 9,
               label: rating.ceil().toString(),
             ),
@@ -73,9 +69,7 @@ class _RatingScreenState extends State<RatingScreen> {
               onPressed: widget.nextPage,
               text: 'Yes please',
             ),
-            const SizedBox(
-              height: kMediumSpacing,
-            ),
+            const SizedBox(height: kMediumSpacing),
           ],
         ),
       ),
