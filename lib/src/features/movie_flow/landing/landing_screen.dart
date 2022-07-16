@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:movie_recommendation_app/src/core/constants.dart';
-import '../../../core/constants.dart';
-import '../../../core/widgets/primary_button.dart';
+import 'package:movie_recommendation_app/src/core/widgets/primary_button.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({

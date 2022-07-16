@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'landing/landing_screen.dart';
+
+import 'package:movie_recommendation_app/src/features/movie_flow/landing/landing_screen.dart';
+import 'package:movie_recommendation_app/src/features/movie_flow/genre/genre_screen.dart';
 
 class MovieFlow extends StatefulWidget {
   const MovieFlow({
@@ -44,10 +46,9 @@ class _MovieFlowState extends State<MovieFlow> {
             nextPage: nextPage,
             previousPage: previousPage,
           ),
-          Scaffold(
-            body: Container(
-              color: Colors.green,
-            ),
+          GenreScreen(
+            nextPage: nextPage,
+            previousPage: previousPage,
           ),
           Scaffold(
             body: Container(
