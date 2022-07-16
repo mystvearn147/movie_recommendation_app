@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:movie_recommendation_app/src/features/movie_flow/landing/landing_screen.dart';
 import 'package:movie_recommendation_app/src/features/movie_flow/genre/genre_screen.dart';
+import 'package:movie_recommendation_app/src/features/movie_flow/rating/rating_screen.dart';
+import 'package:movie_recommendation_app/src/features/movie_flow/years_back/years_back_screen.dart';
 
 class MovieFlow extends StatefulWidget {
   const MovieFlow({
@@ -50,15 +52,13 @@ class _MovieFlowState extends State<MovieFlow> {
             nextPage: nextPage,
             previousPage: previousPage,
           ),
-          Scaffold(
-            body: Container(
-              color: Colors.blue,
-            ),
+          RatingScreen(
+            nextPage: nextPage,
+            previousPage: previousPage,
           ),
-          Scaffold(
-            body: Container(
-              color: Colors.yellow,
-            ),
+          YearsBackScreen(
+            nextPage: nextPage,
+            previousPage: previousPage,
           ),
         ],
       );
