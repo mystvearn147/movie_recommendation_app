@@ -1,33 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:movie_recommendation_app/src/core/constants.dart';
 import 'package:movie_recommendation_app/src/core/widgets/primary_button.dart';
+import 'package:movie_recommendation_app/src/features/movie_flow/movie_flow_controller.dart';
 import 'package:movie_recommendation_app/src/features/movie_flow/result/result_screen.dart';
 
-class YearsBackScreen extends StatefulWidget {
-  const YearsBackScreen({
-    Key? key,
-    required this.nextPage,
-    required this.previousPage,
-  }) : super(key: key);
-
-  final VoidCallback nextPage;
-  final VoidCallback previousPage;
+class YearsBackScreen extends ConsumerWidget {
+  const YearsBackScreen({Key? key}) : super(key: key);
 
   @override
-  createState() => _YearsBackScreenState();
-}
-
-class _YearsBackScreenState extends State<YearsBackScreen> {
-  double yearsBack = 10.0;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: widget.previousPage),
+        leading: BackButton(
+          onPressed:
+              ref.read(movieFlowControllerProvider.notifier).previousPage,
+        ),
       ),
       body: Center(
         child: Column(
@@ -42,7 +33,7 @@ class _YearsBackScreenState extends State<YearsBackScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  yearsBack.ceil().toString(),
+                  ref.watch(movieFlowControllerProvider).yearsBack.toString(),
                   style: theme.textTheme.headline2,
                 ),
                 Text(
@@ -56,15 +47,17 @@ class _YearsBackScreenState extends State<YearsBackScreen> {
             const Spacer(),
             Slider(
               onChanged: (value) {
-                setState(() {
-                  yearsBack = value;
-                });
+                ref
+                    .read(movieFlowControllerProvider.notifier)
+                    .updateYearsBack(value.toInt());
               },
-              value: yearsBack,
+              value:
+                  ref.watch(movieFlowControllerProvider).yearsBack.toDouble(),
               min: 0.0,
               max: 70.0,
               divisions: 70,
-              label: yearsBack.ceil().toString(),
+              label:
+                  ref.watch(movieFlowControllerProvider).yearsBack.toString(),
             ),
             const Spacer(),
             PrimaryButton(

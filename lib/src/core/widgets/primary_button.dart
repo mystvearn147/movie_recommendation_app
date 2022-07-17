@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
+
+import 'package:movie_recommendation_app/src/core/constants.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
