@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:movie_recommendation_app/main.dart';
 import 'package:movie_recommendation_app/src/core/environment_variables.dart';
 import 'package:movie_recommendation_app/src/features/movie_flow/genre/genre_entity.dart';
 import 'package:movie_recommendation_app/src/features/movie_flow/result/movie_entity.dart';
-import 'package:movie_recommendation_app/main.dart';
 
 final movieRepositoryProvider = Provider<MovieRepository>((ref) {
   final dio = ref.watch(dioProvider);
