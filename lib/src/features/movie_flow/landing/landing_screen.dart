@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:movie_recommendation_app/src/core/constants.dart';
 import 'package:movie_recommendation_app/src/core/widgets/primary_button.dart';
@@ -20,7 +21,9 @@ class LandingScreen extends ConsumerWidget {
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
-              Image.asset('images/undraw_horror_movie.png'),
+              SvgPicture.asset('/images/tmdb_logo_blue_long_1.svg'),
+              const Spacer(),
+              Image.asset('/images/undraw_horror_movie.png'),
               const Spacer(),
               PrimaryButton(
                 onPressed:
