@@ -2,7 +2,7 @@ name: movie_recommendation_app
 description: A new Flutter project.
 
 # Prevent accidental publishing to pub.dev.
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -13,6 +13,7 @@ dependencies:
   dio: ^4.0.6
   flutter:
     sdk: flutter
+  flutter_dotenv: ^5.0.2
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^1.0.4
@@ -32,3 +33,4 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - .env

@@ -7,7 +7,12 @@ import 'package:movie_recommendation_app/src/features/movie_flow/movie_flow_cont
 import 'package:movie_recommendation_app/src/features/movie_flow/result/movie.dart';
 
 class CoverImage extends StatelessWidget {
-  const CoverImage({Key? key}) : super(key: key);
+  const CoverImage({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
+
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -29,7 +34,11 @@ class CoverImage extends StatelessWidget {
             ),
           ),
           blendMode: BlendMode.dstIn,
-          child: const Placeholder(),
+          child: Image.network(
+            movie.backdropPath ?? '',
+            fit: BoxFit.cover,
+            errorBuilder: (context, err, stacktrace) => const SizedBox(),
+          ),
         ),
       );
 }
@@ -55,7 +64,11 @@ class MovieImageDetails extends ConsumerWidget {
           SizedBox(
             width: 100.0,
             height: movieHeight,
-            child: const Placeholder(),
+            child: Image.network(
+              movie.posterPath ?? '',
+              fit: BoxFit.cover,
+              errorBuilder: (context, err, stacktrace) => const SizedBox(),
+            ),
           ),
           const SizedBox(width: kMediumSpacing),
           Expanded(
@@ -105,44 +118,55 @@ class ResultScreen extends ConsumerWidget {
   final double movieHeight = 150.0;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView(
+  Widget build(BuildContext context, WidgetRef ref) =>
+      ref.watch(movieFlowControllerProvider).movie.when(
+            data: (movie) => Scaffold(
+              appBar: AppBar(),
+              body: Column(
                 children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      const CoverImage(),
-                      Positioned(
-                        width: MediaQuery.of(context).size.width,
-                        bottom: (movieHeight / 2) * -1,
-                        child: MovieImageDetails(
-                          movie: ref.watch(movieFlowControllerProvider).movie,
-                          movieHeight: movieHeight,
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            CoverImage(movie: movie),
+                            Positioned(
+                              width: MediaQuery.of(context).size.width,
+                              bottom: (movieHeight / 2) * -1,
+                              child: MovieImageDetails(
+                                movie: movie,
+                                movieHeight: movieHeight,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: movieHeight / 2),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Text(
-                      ref.watch(movieFlowControllerProvider).movie.overview,
-                      style: Theme.of(context).textTheme.bodyText2,
+                        SizedBox(height: movieHeight / 2),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            movie.overview,
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                  PrimaryButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    text: 'Find another movie',
+                  ),
+                  const SizedBox(height: kMediumSpacing),
                 ],
               ),
             ),
-            PrimaryButton(
-              onPressed: () => Navigator.of(context).pop(),
-              text: 'Find another movie',
+            loading: () => const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
-            const SizedBox(height: kMediumSpacing),
-          ],
-        ),
-      );
+            error: (error, stacktrace) => const Text(
+              'Something went wrong on our end',
+            ),
+          );
 }

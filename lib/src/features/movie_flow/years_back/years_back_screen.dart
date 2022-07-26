@@ -61,8 +61,16 @@ class YearsBackScreen extends ConsumerWidget {
             ),
             const Spacer(),
             PrimaryButton(
-              onPressed: () => Navigator.of(context).push(ResultScreen.route()),
+              onPressed: () async {
+                await ref
+                    .read(movieFlowControllerProvider.notifier)
+                    .getRecommendedMovie();
+
+                Navigator.of(context).push(ResultScreen.route());
+              },
               text: 'Amazing',
+              isLoading:
+                  ref.watch(movieFlowControllerProvider).movie is AsyncLoading,
             ),
             const SizedBox(height: kMediumSpacing),
           ],
