@@ -59,18 +59,14 @@ class MovieFlowState {
       );
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-
-    return other is MovieFlowState &&
-        other.pageController == pageController &&
-        other.rating == rating &&
-        other.yearsBack == yearsBack &&
-        other.genres == genres &&
-        other.movie == movie;
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MovieFlowState &&
+          other.pageController == pageController &&
+          other.rating == rating &&
+          other.yearsBack == yearsBack &&
+          other.genres == genres &&
+          other.movie == movie);
 
   @override
   int get hashCode =>

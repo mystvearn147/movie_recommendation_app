@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:movie_recommendation_app/src/features/movie_flow/genre/genre.dart';
+import 'package:movie_recommendation_app/src/features/movie_flow/result/movie_entity.dart';
 
 @immutable
 class Movie {
@@ -31,6 +32,19 @@ class Movie {
         backdropPath = '',
         posterPath = '';
 
+  factory Movie.fromEntity(MovieEntity entity, List<Genre> genres) => Movie(
+        title: entity.title,
+        overview: entity.overview,
+        voteAverage: entity.voteAverage,
+        genres: genres
+            .where((genre) => entity.genreIds.contains(genre.id))
+            .toList(growable: false),
+        releaseDate: entity.releaseDate,
+        backdropPath:
+            'https://image.tmdb.org/t/p/original/${entity.backdropPath}',
+        posterPath: 'https://image.tmdb.org/t/p/original/${entity.posterPath}',
+      );
+
   String get genresCommaSeparated =>
       genres.map((genre) => genre.name).join(', ');
 
@@ -39,18 +53,14 @@ class Movie {
       'Movie(title: $title, overview: $overview, voteAverage: $voteAverage, genres: $genres, releaseDate: $releaseDate, backdropPath: $backdropPath, posterPath: $posterPath)';
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-
-    return other is Movie &&
-        other.title == title &&
-        other.overview == overview &&
-        other.voteAverage == voteAverage &&
-        listEquals(other.genres, genres) &&
-        other.releaseDate == releaseDate;
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Movie &&
+          other.title == title &&
+          other.overview == overview &&
+          other.voteAverage == voteAverage &&
+          listEquals(other.genres, genres) &&
+          other.releaseDate == releaseDate);
 
   @override
   int get hashCode =>
