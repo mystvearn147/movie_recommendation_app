@@ -23,13 +23,9 @@ void main() {
   test(
     'Given successful call When getting GenreEntities Then map to correct genres',
     () async {
-      when(() => mockedMovieRepository.getMovieGenres())
-          .thenAnswer((invocation) => Future.value([
-                const GenreEntity(
-                  id: 0,
-                  name: 'Animation',
-                )
-              ]));
+      when(() => mockedMovieRepository.getMovieGenres()).thenAnswer(
+          (invocation) =>
+              Future.value([const GenreEntity(id: 0, name: 'Animation')]));
 
       final movieService = TMDBMovieService(mockedMovieRepository);
       final result = await movieService.getGenres();
@@ -75,11 +71,9 @@ void main() {
         releaseDate: '2010-02-03',
       );
 
-      when(() => mockedMovieRepository.getRecommendedMovies(
-            any(),
-            any(),
-            any(),
-          )).thenAnswer((invocation) => Future.value([movieEntity]));
+      when(
+        () => mockedMovieRepository.getRecommendedMovies(any(), any(), any()),
+      ).thenAnswer((invocation) => Future.value([movieEntity]));
 
       final movieService = TMDBMovieService(mockedMovieRepository);
       final result = await movieService.getRecommendedMovie(
@@ -112,11 +106,7 @@ void main() {
       );
 
       when(
-        () => mockedMovieRepository.getRecommendedMovies(
-          any(),
-          any(),
-          any(),
-        ),
+        () => mockedMovieRepository.getRecommendedMovies(any(), any(), any()),
       ).thenThrow(Failure(
         message: 'message',
         exception: const SocketException(''),
