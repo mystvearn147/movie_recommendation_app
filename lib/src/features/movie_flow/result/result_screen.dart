@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_recommendation_app/src/core/constants.dart';
 import 'package:movie_recommendation_app/src/core/failure.dart';
 import 'package:movie_recommendation_app/src/core/widgets/failure_screen.dart';
+import 'package:movie_recommendation_app/src/core/widgets/network_fading_image.dart';
 import 'package:movie_recommendation_app/src/core/widgets/primary_button.dart';
 import 'package:movie_recommendation_app/src/features/movie_flow/movie_flow_controller.dart';
 import 'package:movie_recommendation_app/src/features/movie_flow/result/movie.dart';
@@ -36,11 +37,7 @@ class CoverImage extends StatelessWidget {
             ),
           ),
           blendMode: BlendMode.dstIn,
-          child: Image.network(
-            movie.backdropPath ?? '',
-            fit: BoxFit.cover,
-            errorBuilder: (context, err, stacktrace) => const SizedBox(),
-          ),
+          child: NetworkFadingImage(path: movie.backdropPath ?? ''),
         ),
       );
 }
@@ -66,11 +63,7 @@ class MovieImageDetails extends ConsumerWidget {
           SizedBox(
             width: 100.0,
             height: movieHeight,
-            child: Image.network(
-              movie.posterPath ?? '',
-              fit: BoxFit.cover,
-              errorBuilder: (context, err, stacktrace) => const SizedBox(),
-            ),
+            child: NetworkFadingImage(path: movie.posterPath ?? ''),
           ),
           const SizedBox(width: kMediumSpacing),
           Expanded(
