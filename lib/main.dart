@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'src/app.dart';
-import 'src/settings/settings_controller.dart';
-import 'src/settings/settings_service.dart';
-
+import 'package:movie_recommendation_app/src/app.dart';
 import 'package:movie_recommendation_app/src/core/environment_variables.dart';
+import 'package:movie_recommendation_app/src/settings/settings_controller.dart';
+import 'package:movie_recommendation_app/src/settings/settings_service.dart';
 
 final dioProvider = Provider<Dio>((ref) => Dio(BaseOptions(
       baseUrl: tmdbBaseUrl,

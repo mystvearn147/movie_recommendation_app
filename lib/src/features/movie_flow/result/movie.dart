@@ -41,8 +41,12 @@ class Movie {
             .toList(growable: false),
         releaseDate: entity.releaseDate,
         backdropPath:
-            'https://image.tmdb.org/t/p/original/${entity.backdropPath}',
-        posterPath: 'https://image.tmdb.org/t/p/original/${entity.posterPath}',
+            entity.backdropPath != null && entity.backdropPath!.isNotEmpty
+                ? 'https://image.tmdb.org/t/p/original/${entity.backdropPath}'
+                : null,
+        posterPath: entity.posterPath != null && entity.posterPath!.isNotEmpty
+            ? 'https://image.tmdb.org/t/p/original/${entity.posterPath}'
+            : null,
       );
 
   String get genresCommaSeparated =>
